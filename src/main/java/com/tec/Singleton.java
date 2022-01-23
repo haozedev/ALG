@@ -1,4 +1,4 @@
-package com.tec.mode;
+package com.tec;
 
 /**
  * @author HaoZ
