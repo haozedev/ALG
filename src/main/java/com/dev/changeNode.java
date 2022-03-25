@@ -1,6 +1,6 @@
 package com.dev;
 
-import com.dev.pojo.ListNode;
+import com.pojo.ListNode;
 
 /**
  * @author lingfeng
