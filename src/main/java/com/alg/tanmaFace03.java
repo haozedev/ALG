@@ -1,4 +1,4 @@
-package com.dev;
+package com.alg;
 
 /**
  * @author lingfeng

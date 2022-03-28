@@ -1,4 +1,4 @@
-package com.dev;
+package com.alg;
 
 import java.util.ArrayList;
 import java.util.Arrays;
