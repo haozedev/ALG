@@ -2,6 +2,8 @@ package com.pojo;
 
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
+
 /**
  * @author lingfeng
  * @create 2022/3/25 21:13
@@ -49,6 +51,7 @@ public class MethodDO {
 
     /**
      * 给定一个排序数组和一个目标值，在数组中找到目标值，并返回其索引。如果目标值不存在于数组中，返回它将会被按顺序插入的位置。
+     *
      * @param nums
      * @param target
      * @return
@@ -59,14 +62,37 @@ public class MethodDO {
         int right = n - 1;
         while (left <= right) {
             int mid = left + (right - left) / 2;//(right+left)/2可能会溢出
-            if (nums[mid]<target){
+            if (nums[mid] < target) {
                 left = mid + 1;
-            }else if (nums[mid]>target){
+            } else if (nums[mid] > target) {
                 right = mid - 1;
-            }else {
+            } else {
                 return mid;
             }
         }
         return right + 1;
+    }
+
+    /**
+     * 实现获取 下一个排列 的函数，算法需要将给定数字序列重新排列成字典序中下一个更大的排列。
+     * 如果不存在下一个更大的排列，则将数字重新排列成最小的排列（即升序排列）。
+     * 必须 原地 修改，只允许使用额外常数空间。
+     *
+     * @param nums
+     */
+    public static void nextPermutation(int[] nums) {
+        for (int i = nums.length - 1; i >= 0; i--) {
+            for (int j = nums.length - 1; j > i; j--) {
+                if (nums[j] > nums[i]) {
+                    int temp = nums[i];
+                    nums[i] = nums[j];
+                    nums[j] = temp;
+                    // [i + 1, nums.length) 内元素升序排序
+                    Arrays.sort(nums, i + 1, nums.length);
+                    return;
+                }
+            }
+        }
+        Arrays.sort(nums); // 不存在下一个更大的排列，则将数字重新排列成最小的排列（即升序排列）。
     }
 }
