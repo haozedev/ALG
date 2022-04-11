@@ -95,4 +95,19 @@ public class MethodDO {
         }
         Arrays.sort(nums); // 不存在下一个更大的排列，则将数字重新排列成最小的排列（即升序排列）。
     }
+
+    /**
+     * @Description 以数组 intervals 表示若干个区间的集合，其中单个区间为 intervals[i] = [starti, endi] 。
+     * 请你合并所有重叠的区间，并返回一个不重叠的区间数组，该数组需恰好覆盖输入中的所有区间。
+     * @Param intervals
+     * @Return int[][]
+     * @Author HaoZe
+     * @Date 2022/4/11
+     **/
+    public int[][] merge(int[][] intervals) {
+        Arrays.sort(intervals, (o1, o2) -> Integer.compare(o1[0], o2[0]));
+
+
+        return null;
+    }
 }
