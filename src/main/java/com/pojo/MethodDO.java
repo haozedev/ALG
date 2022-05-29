@@ -2,6 +2,7 @@ package com.pojo;
 
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -79,8 +80,6 @@ public class MethodDO {
      * 实现获取 下一个排列 的函数，算法需要将给定数字序列重新排列成字典序中下一个更大的排列。
      * 如果不存在下一个更大的排列，则将数字重新排列成最小的排列（即升序排列）。
      * 必须 原地 修改，只允许使用额外常数空间。
-     *
-     * @param nums
      */
     public static void nextPermutation(int[] nums) {
         for (int i = nums.length - 1; i >= 0; i--) {
@@ -123,5 +122,26 @@ public class MethodDO {
 
         res.add(new int[]{start, intervals[intervals.length - 1][1]});
         return res.toArray(new int[res.size()][]);
+    }
+
+    /**
+     * @Description
+     * @Param matrix
+     * @Return java.util.List<java.lang.Integer>
+     * @Author ty-ChaiHaoZe
+     * @Date 2022/5/27
+     **/
+    public List<Integer> spiralOrder(int[][] matrix) {
+        List<Integer> list = new ArrayList<>();
+        //行
+        int rows = matrix.length;
+        //列
+        int columns = matrix[0].length;
+        //总数
+        int total = rows * columns;
+
+
+
+        return list;
     }
 }

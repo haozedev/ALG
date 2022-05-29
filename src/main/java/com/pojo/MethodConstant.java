@@ -10,4 +10,5 @@ public class MethodConstant {
     }
 
     public static String space = " ";
+    public static String sc;
 }
