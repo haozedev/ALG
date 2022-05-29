@@ -80,6 +80,8 @@ public class MethodDO {
      * 实现获取 下一个排列 的函数，算法需要将给定数字序列重新排列成字典序中下一个更大的排列。
      * 如果不存在下一个更大的排列，则将数字重新排列成最小的排列（即升序排列）。
      * 必须 原地 修改，只允许使用额外常数空间。
+     *
+     * @param nums
      */
     public static void nextPermutation(int[] nums) {
         for (int i = nums.length - 1; i >= 0; i--) {
@@ -107,6 +109,7 @@ public class MethodDO {
      **/
     public int[][] merge(int[][] intervals) {
         List<int[]> res = new LinkedList();
+        List<int[]> res = new LinkedList<>();
         Arrays.sort(intervals, (o1, o2) -> Integer.compare(o1[0], o2[0]));
 
         int start = intervals[0][0];
@@ -140,6 +143,18 @@ public class MethodDO {
         //总数
         int total = rows * columns;
 
+        int start = intervals[0][0];
+        for (int i = 1; i < intervals.length; i++) {
+            if (intervals[i][0] > intervals[i - 1][1]) {
+                res.add(new int[]{start, intervals[i - 1][1]});
+                start = intervals[i][0];
+            } else {
+                intervals[i][1] = Math.max(intervals[i][1], intervals[i - 1][1]);
+            }
+        }
+        res.add(new int[]{start, intervals[intervals.length - 1][1]});
+        return res.toArray(new int[res.size()][]);
+    }
 
 
         return list;
