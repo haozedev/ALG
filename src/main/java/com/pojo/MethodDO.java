@@ -108,7 +108,6 @@ public class MethodDO {
      * @Date 2022/4/11
      **/
     public int[][] merge(int[][] intervals) {
-        List<int[]> res = new LinkedList();
         List<int[]> res = new LinkedList<>();
         Arrays.sort(intervals, (o1, o2) -> Integer.compare(o1[0], o2[0]));
 
@@ -134,29 +133,26 @@ public class MethodDO {
      * @Author ty-ChaiHaoZe
      * @Date 2022/5/27
      **/
-    public List<Integer> spiralOrder(int[][] matrix) {
+    public List<Integer> spiralOrder(int[][] intervals) {
         List<Integer> list = new ArrayList<>();
         //行
-        int rows = matrix.length;
+        int rows = intervals.length;
         //列
-        int columns = matrix[0].length;
+        int columns = intervals[0].length;
         //总数
         int total = rows * columns;
 
         int start = intervals[0][0];
         for (int i = 1; i < intervals.length; i++) {
             if (intervals[i][0] > intervals[i - 1][1]) {
-                res.add(new int[]{start, intervals[i - 1][1]});
                 start = intervals[i][0];
             } else {
                 intervals[i][1] = Math.max(intervals[i][1], intervals[i - 1][1]);
             }
         }
-        res.add(new int[]{start, intervals[intervals.length - 1][1]});
-        return res.toArray(new int[res.size()][]);
-    }
 
 
-        return list;
+
+        return null;
     }
 }

@@ -1,4 +1,4 @@
-package com.dev.pojo;
+package com.pojo.pojo;
 
 /**
  * @author lingfeng

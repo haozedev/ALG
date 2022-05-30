@@ -1,6 +1,6 @@
 package com.dev;
 
-import com.dev.pojo.MethodDO;
+import com.pojo.pojo.MethodDO;
 
 /**
  * @author lingfeng
