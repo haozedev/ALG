@@ -15,3 +15,6 @@ git config --global https.proxy localhost:51525
 git config --global user.name "haozedev"
 
 git config --global user.email "1823390765@qq.com"
+
+弱引用配置
+-Xms5m -Xmx5m -XX:+PrintGCDetails
