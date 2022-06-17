@@ -12,9 +12,7 @@ git config --global http.proxy localhost:51525 设置代理
 
 git config --global https.proxy localhost:51525
 
-git config --global user.name "haozedev"
-
-git config --global user.email "1823390765@qq.com"
+git config --global user.name "haozedev" 
 
 弱引用配置
 -Xms5m -Xmx5m -XX:+PrintGCDetails

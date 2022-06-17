@@ -1,5 +1,6 @@
 package com.dev;
 
+import java.util.*;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
@@ -26,5 +27,23 @@ public class BlockingQueueDemo {
 //        System.out.println(blockingQueue);
 
         System.out.println(blockingQueue.offer("a", 2L, TimeUnit.SECONDS));
+
+        Collection<String> c  = new ArrayList<>();
+
+        ArrayList<String> s = new ArrayList<>();
+
+        //给 set 加上 Comparator自带排序了
+        TreeSet<Integer> i = new TreeSet<>(new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return o1.hashCode() - o2.hashCode();
+            }
+        });
+
+        i.add(1);
+        i.add(2);
+        i.add(6);
+        i.add(4);
+        System.out.println(i);
     }
 }

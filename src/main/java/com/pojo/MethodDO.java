@@ -152,7 +152,34 @@ public class MethodDO {
         }
 
 
+        return null;
+    }
 
+    /**
+     *@Description 快慢指针
+     *@Param head
+     *@Return com.pojo.ListNode
+     *@Author ty-ChaiHaoZe
+     *@Date 2022/6/13
+     **/
+    public ListNode det(ListNode head) {
+        ListNode fast, slow;
+
+        fast = slow = head;
+
+        while (slow != null && fast.next != null) {
+            fast = slow.next.next;
+            slow = slow.next;
+            if (fast == slow) {
+                slow = head;
+                while (slow != fast) {
+                    slow = slow.next;
+                    fast = fast.next;
+                }
+                return slow;
+            }
+
+        }
         return null;
     }
 }
