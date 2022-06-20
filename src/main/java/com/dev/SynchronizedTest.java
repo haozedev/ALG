@@ -6,10 +6,9 @@ public class SynchronizedTest {
 
     public static volatile int race = 0;
 
-    private static CountDownLatch countDownLatch = new CountDownLatch(2);
+    private volatile static CountDownLatch countDownLatch = new CountDownLatch(2);
 
     public static void main(String[] args) throws InterruptedException {
-
 
         // 循环开启2个线程来计数
         for (int i = 0; i < 2; i++) {
@@ -20,7 +19,7 @@ public class SynchronizedTest {
                     synchronized (SynchronizedTest.class) {
                         race++;
                     }
-//                    race++; 只这么写小于20000
+//                    race++; //只这么写小于20000
                 }
                 countDownLatch.countDown();
             }).start();
