@@ -1,5 +1,9 @@
 package com.alg;
 
+import com.pojo.MethodDO;
+
+import java.util.List;
+
 /**
  * @ClassName getLastStrLen
  * @Description TODO
@@ -10,9 +14,15 @@ package com.alg;
  **/
 public class getLastStrLen {
     public static void main(String[] args) {
-        String str = "hello";
+//        String str = "hello";
+//
+//        System.out.println(getStrLen(str));
 
-        System.out.println(getStrLen(str));
+        String s = "adf";
+        List<String> permutation = MethodDO.getPermutation(s);
+        for (String s1 : permutation) {
+            System.out.println(s1);
+        }
     }
 
     /**
