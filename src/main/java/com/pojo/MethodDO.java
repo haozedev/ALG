@@ -127,32 +127,43 @@ public class MethodDO {
     }
 
     /**
-     * @Description
+     *@Description 给你一个 m 行 n 列的矩阵 matrix ，请按照 顺时针螺旋顺序 ，返回矩阵中的所有元素。
+     *              输入：matrix = [[1,2,3],[4,5,6],[7,8,9]]
+     *              输出：[1,2,3,6,9,8,7,4,5]
      * @Param matrix
      * @Return java.util.List<java.lang.Integer>
      * @Author ty-ChaiHaoZe
      * @Date 2022/5/27
      **/
-    public List<Integer> spiralOrder(int[][] intervals) {
-        List<Integer> list = new ArrayList<>();
-        //行
-        int rows = intervals.length;
-        //列
-        int columns = intervals[0].length;
-        //总数
-        int total = rows * columns;
+    public List<Integer> spiralOrder(int[][] matrix) {
+            List<Integer> list = new ArrayList<Integer>();
+            if(matrix == null || matrix.length == 0)
+                return list;
+            int m = matrix.length;
+            int n = matrix[0].length;
+            int i = 0;
 
-        int start = intervals[0][0];
-        for (int i = 1; i < intervals.length; i++) {
-            if (intervals[i][0] > intervals[i - 1][1]) {
-                start = intervals[i][0];
-            } else {
-                intervals[i][1] = Math.max(intervals[i][1], intervals[i - 1][1]);
+            //统计矩阵从外向内的层数，如果矩阵非空，那么它的层数至少为1层
+            int count = (Math.min(m, n)+1)/2;
+            //从外部向内部遍历，逐层打印数据
+            while(i < count) {
+                for (int j = i; j < n-i; j++) {
+                    list.add(matrix[i][j]);
+                }
+                for (int j = i+1; j < m-i; j++) {
+                    list.add(matrix[j][(n-1)-i]);
+                }
+
+                for (int j = (n-1)-(i+1); j >= i && (m-1-i != i); j--) {
+                    list.add(matrix[(m-1)-i][j]);
+                }
+                for (int j = (m-1)-(i+1); j >= i+1 && (n-1-i) != i; j--) {
+                    list.add(matrix[j][i]);
+                }
+                i++;
             }
-        }
+            return list;
 
-
-        return null;
     }
 
     /**
@@ -181,5 +192,51 @@ public class MethodDO {
 
         }
         return null;
+    }
+
+    /**
+     *@Description
+     *@Param str
+     *@Return int
+     *@Author HaoZe
+     *@Date 2022/6/8
+     **/
+    public int getStrLen(String str){
+        if (str.length()<=0){
+            return 0;
+        }
+        String[] split = str.split("\u0020");
+
+        return split[split.length-1].length();
+
+    }
+
+    /**
+     *@Description 获取字符串的全排列
+     *@Param A
+     *@Return java.util.ArrayList<java.lang.String>
+     *@Author HaoZe
+     *@Date 2022/6/20
+     **/
+    public static List<String> getPermutation(String s){
+        List<String> list = new ArrayList<>();//生成一个List集合来存储全排列的结果
+        list.add("" + s.charAt(0));//初始化list数组，初始元素为字符串的第一个元素
+        for (int i = 1; i < s.length(); i++) {
+            List<String> new_list = new ArrayList<>();//创建一个临时数组来存储下一步生成的结果
+            char c = s.charAt(i);//获取此时应该插入的字符
+            //对当前的数组进行遍历操作
+            for (String str :
+                    list) {
+                new_list.add(str + c);//新字符插入到字符串的后面
+                new_list.add(c + str);//新字符插入到字符串前面
+                //字符插入字符串中间的操作用循环完成
+                for (int j = 1; j < str.length(); j++) {//新字符插入到字符串中间
+                    String tem = str.substring(0, j) + c + str.substring(j);
+                    new_list.add(tem);
+                }
+            }
+            list = new_list;//将生成的新的newlist集合同步
+        }
+        return list;
     }
 }
