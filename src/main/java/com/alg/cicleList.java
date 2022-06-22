@@ -1,5 +1,6 @@
 package com.alg;
 
+import java.util.Collection;
 import java.util.HashMap;
 
 /**
@@ -16,6 +17,10 @@ public class cicleList {
 
         hashMap.put(1,"ss");
         hashMap.put(1,"aa");
+
+        Collection<String> values = hashMap.values();
+        System.out.println(values);
+
         System.out.println(hashMap.toString());
     }
 }
