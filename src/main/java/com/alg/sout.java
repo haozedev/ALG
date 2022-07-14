@@ -43,7 +43,7 @@ public class sout {
         //获取digits中的第i个数值，比如i=0,就是获取“23”中的2
         String str = numString[digits.charAt(num) - '0'];
         for (int i1 = 0; i1 < str.length(); i1++) {
-            //temp现在有一个字母了 a
+            //temp现在有一个字母了 MonitorDo
             temp.append(str.charAt(i1));
             //num+1 去下一层给a后面加字母 ad,ae,af
             backTrack(temp, list, digits, numString, num + 1);
