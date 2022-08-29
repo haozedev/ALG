@@ -2,7 +2,7 @@ package com.dev;
 
 /**
  * @ClassName SafeDoubleCheckSingleton
- * @Description TODO
+ * @Description 单例，防止指令重排
  * @Author ty-ChaiHaoZe
  * @Date 2022/6/17
  * @Version TODO

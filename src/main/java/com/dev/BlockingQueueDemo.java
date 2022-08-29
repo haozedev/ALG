@@ -18,7 +18,7 @@ public class BlockingQueueDemo {
 
         BlockingQueue<String> blockingQueue = new ArrayBlockingQueue<>(3);
 
-        System.out.println(blockingQueue.add("a"));
+        System.out.println(blockingQueue.add("MonitorDo"));
         System.out.println(blockingQueue.add("b"));
         System.out.println(blockingQueue.add("c"));
 
@@ -26,7 +26,7 @@ public class BlockingQueueDemo {
 //
 //        System.out.println(blockingQueue);
 
-        System.out.println(blockingQueue.offer("a", 2L, TimeUnit.SECONDS));
+        System.out.println(blockingQueue.offer("MonitorDo", 2L, TimeUnit.SECONDS));
 
         Collection<String> c  = new ArrayList<>();
 

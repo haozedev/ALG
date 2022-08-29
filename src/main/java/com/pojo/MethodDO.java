@@ -2,10 +2,7 @@ package com.pojo;
 
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author lingfeng
@@ -238,5 +235,14 @@ public class MethodDO {
             list = new_list;//将生成的新的newlist集合同步
         }
         return list;
+    }
+
+    public static Object[] randomNum(int [] arr){
+        Set<Integer> set = new HashSet<>();
+        for (int i : arr) {
+            set.add(i);
+        }
+        return set.toArray();
+
     }
 }

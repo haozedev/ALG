@@ -34,7 +34,7 @@ public class ContainerNotSafeDemo {
             },String.valueOf(i)).start();
         }
         //add()方法，默认value是PRESENT
-        new HashSet<>().add("a");
+        new HashSet<>().add("MonitorDo");
     }
 
 }
