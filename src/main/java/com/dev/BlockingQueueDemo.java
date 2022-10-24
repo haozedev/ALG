@@ -20,6 +20,7 @@ public class BlockingQueueDemo {
 
         System.out.println(blockingQueue.add("MonitorDo"));
         System.out.println(blockingQueue.add("b"));
+
         System.out.println(blockingQueue.add("c"));
 
 //        System.out.println(blockingQueue.remove());
