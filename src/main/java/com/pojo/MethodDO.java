@@ -124,51 +124,51 @@ public class MethodDO {
     }
 
     /**
-     *@Description 给你一个 m 行 n 列的矩阵 matrix ，请按照 顺时针螺旋顺序 ，返回矩阵中的所有元素。
-     *              输入：matrix = [[1,2,3],[4,5,6],[7,8,9]]
-     *              输出：[1,2,3,6,9,8,7,4,5]
+     * @Description 给你一个 m 行 n 列的矩阵 matrix ，请按照 顺时针螺旋顺序 ，返回矩阵中的所有元素。
+     * 输入：matrix = [[1,2,3],[4,5,6],[7,8,9]]
+     * 输出：[1,2,3,6,9,8,7,4,5]
      * @Param matrix
      * @Return java.util.List<java.lang.Integer>
      * @Author ty-ChaiHaoZe
      * @Date 2022/5/27
      **/
     public List<Integer> spiralOrder(int[][] matrix) {
-            List<Integer> list = new ArrayList<Integer>();
-            if(matrix == null || matrix.length == 0)
-                return list;
-            int m = matrix.length;
-            int n = matrix[0].length;
-            int i = 0;
-
-            //统计矩阵从外向内的层数，如果矩阵非空，那么它的层数至少为1层
-            int count = (Math.min(m, n)+1)/2;
-            //从外部向内部遍历，逐层打印数据
-            while(i < count) {
-                for (int j = i; j < n-i; j++) {
-                    list.add(matrix[i][j]);
-                }
-                for (int j = i+1; j < m-i; j++) {
-                    list.add(matrix[j][(n-1)-i]);
-                }
-
-                for (int j = (n-1)-(i+1); j >= i && (m-1-i != i); j--) {
-                    list.add(matrix[(m-1)-i][j]);
-                }
-                for (int j = (m-1)-(i+1); j >= i+1 && (n-1-i) != i; j--) {
-                    list.add(matrix[j][i]);
-                }
-                i++;
-            }
+        List<Integer> list = new ArrayList<Integer>();
+        if (matrix == null || matrix.length == 0)
             return list;
+        int m = matrix.length;
+        int n = matrix[0].length;
+        int i = 0;
+
+        //统计矩阵从外向内的层数，如果矩阵非空，那么它的层数至少为1层
+        int count = (Math.min(m, n) + 1) / 2;
+        //从外部向内部遍历，逐层打印数据
+        while (i < count) {
+            for (int j = i; j < n - i; j++) {
+                list.add(matrix[i][j]);
+            }
+            for (int j = i + 1; j < m - i; j++) {
+                list.add(matrix[j][(n - 1) - i]);
+            }
+
+            for (int j = (n - 1) - (i + 1); j >= i && (m - 1 - i != i); j--) {
+                list.add(matrix[(m - 1) - i][j]);
+            }
+            for (int j = (m - 1) - (i + 1); j >= i + 1 && (n - 1 - i) != i; j--) {
+                list.add(matrix[j][i]);
+            }
+            i++;
+        }
+        return list;
 
     }
 
     /**
-     *@Description 快慢指针
-     *@Param head
-     *@Return com.pojo.ListNode
-     *@Author ty-ChaiHaoZe
-     *@Date 2022/6/13
+     * @Description 快慢指针
+     * @Param head
+     * @Return com.pojo.ListNode
+     * @Author ty-ChaiHaoZe
+     * @Date 2022/6/13
      **/
     public ListNode det(ListNode head) {
         ListNode fast, slow;
@@ -192,30 +192,30 @@ public class MethodDO {
     }
 
     /**
-     *@Description
-     *@Param str
-     *@Return int
-     *@Author HaoZe
-     *@Date 2022/6/8
+     * @Description
+     * @Param str
+     * @Return int
+     * @Author HaoZe
+     * @Date 2022/6/8
      **/
-    public int getStrLen(String str){
-        if (str.length()<=0){
+    public int getStrLen(String str) {
+        if (str.length() <= 0) {
             return 0;
         }
         String[] split = str.split("\u0020");
 
-        return split[split.length-1].length();
+        return split[split.length - 1].length();
 
     }
 
     /**
-     *@Description 获取字符串的全排列
-     *@Param A
-     *@Return java.util.ArrayList<java.lang.String>
-     *@Author HaoZe
-     *@Date 2022/6/20
+     * @Description 获取字符串的全排列
+     * @Param A
+     * @Return java.util.ArrayList<java.lang.String>
+     * @Author HaoZe
+     * @Date 2022/6/20
      **/
-    public static List<String> getPermutation(String s){
+    public static List<String> getPermutation(String s) {
         List<String> list = new ArrayList<>();//生成一个List集合来存储全排列的结果
         list.add("" + s.charAt(0));//初始化list数组，初始元素为字符串的第一个元素
         for (int i = 1; i < s.length(); i++) {
@@ -237,7 +237,7 @@ public class MethodDO {
         return list;
     }
 
-    public static Object[] randomNum(int [] arr){
+    public static Object[] randomNum(int[] arr) {
         Set<Integer> set = new HashSet<>();
         for (int i : arr) {
             set.add(i);
@@ -247,22 +247,22 @@ public class MethodDO {
     }
 
     /**
-     *@Description 给你两个 非空 的链表，表示两个非负的整数。
+     * @Description 给你两个 非空 的链表，表示两个非负的整数。
      * 它们每位数字都是按照 逆序 的方式存储的，并且每个节点只能存储一位数字
      * 请你将两个数相加，并以相同形式返回一个表示和的链表。
      * 你可以假设除了数字 0 之外，这两个数都不会以 0 开头。
-     *@Param l1
-     *@Param l2
-     *@Return com.pojo.ListNode
-     *@Author HaoZe
-     *@Date 2022/11/2
+     * @Param l1
+     * @Param l2
+     * @Return com.pojo.ListNode
+     * @Author HaoZe
+     * @Date 2022/11/2
      **/
     public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode head = l1;
         ListNode res = new ListNode();
-        int i = (l1.getVal() + l2.getVal() )% 10;
+        int i = (l1.getVal() + l2.getVal()) % 10;
         res.setVal(i);
-        while (head!=null){
+        while (head != null) {
             ListNode next1 = l1.getNext();
             ListNode next2 = l2.getNext();
             int i1 = (next1.getVal() + next2.getVal()) % 10;
@@ -275,4 +275,18 @@ public class MethodDO {
         return res;
     }
 
+    /**
+     * 合并两个有序链表并有序返回
+     *
+     * @param list1
+     * @param list2
+     * @return
+     */
+
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        ListNode res = list1.val < list2.val ? list1 : list2;
+        res.next = mergeTwoLists(res.next, list1.val >= list2.val ? list1 : list2);
+
+        return res;
+    }
 }
