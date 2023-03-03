@@ -1,5 +1,6 @@
 package com.pojo;
 
+import org.junit.jupiter.api.Test;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
@@ -288,5 +289,42 @@ public class MethodDO {
         res.next = mergeTwoLists(res.next, list1.val >= list2.val ? list1 : list2);
 
         return res;
+    }
+
+    /**
+     * Definition for singly-linked list.
+     * public class ListNode {
+     * int val;
+     * ListNode next;
+     * ListNode(int x) { val = x; }
+     * }
+     */
+    public static ListNode reverseList1(ListNode head) {
+
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode res = reverseList1(head.next);
+        head.next.next = head;
+        head.next = null;
+        return res;
+    }
+
+
+    @Test
+    public void methodTest() {
+        ListNode node1 = new ListNode(1);
+        ListNode node2 = new ListNode(2);
+        ListNode node3 = new ListNode(3);
+        ListNode node4 = new ListNode(4);
+        ListNode node5 = new ListNode(5);
+
+        node1.next = node2;
+        node2.next = node3;
+        node3.next = node4;
+        node4.next = node5;
+
+        MethodDO.reverseList1(node1);
+        System.out.println(node1);
     }
 }
