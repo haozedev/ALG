@@ -310,21 +310,81 @@ public class MethodDO {
         return res;
     }
 
+    /**
+     * 请实现一个函数，把字符串 s 中的每个空格替换成"%20"。
+     *
+     * @param s
+     * @return
+     */
+    public static String replaceSpace(String s) {
+        StringBuilder string = new StringBuilder();
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (c == ' ') {
+                string.append("%20");
+            } else {
+                string.append(c);
+            }
+
+        }
+        return string.toString();
+    }
+
+    /**
+     * 字符串的左旋转操作是把字符串前面的若干个字符转移到字符串的尾部。请定义一个函数实现字符串左旋转操作的功能。
+     * 比如，输入字符串"abcdefg"和数字2，该函数将返回左旋转两位得到的结果"cdefgab"。
+     *
+     * @param s
+     * @param n
+     * @return
+     */
+    public static String reverseLeftWords(String s, int n) {
+        String res = "";
+        for(int i = n; i < n + s.length(); i++)
+            res += s.charAt(i % s.length());
+        return res;
+
+
+    }
+
+    /**
+     * 统计一个数字在排序数组中出现的次数。
+     * @param nums
+     * @param target
+     * @return
+     */
+    public static int search(int[] nums, int target) {
+        int res = 0;
+        for (int num : nums) {
+            if (target==num){
+                res++;
+            }
+        }
+        return res;
+    }
+
+    /**
+     * 一个长度为n-1的递增排序数组中的所有数字都是唯一的，并且每个数字都在范围0～n-1之内。
+     * 在范围0～n-1内的n个数字中有且只有一个数字不在该数组中，请找出这个数字。
+     * @param nums
+     * @return
+     */
+    public static int missingNumber(int[] nums) {
+        int res = nums[0];
+        for (int i = 0; i < nums.length; i++) {
+            if (res!=nums[i]){
+                break;
+            }
+            res ++;
+        }
+
+        return res;
+    }
 
     @Test
     public void methodTest() {
-        ListNode node1 = new ListNode(1);
-        ListNode node2 = new ListNode(2);
-        ListNode node3 = new ListNode(3);
-        ListNode node4 = new ListNode(4);
-        ListNode node5 = new ListNode(5);
-
-        node1.next = node2;
-        node2.next = node3;
-        node3.next = node4;
-        node4.next = node5;
-
-        MethodDO.reverseList1(node1);
-        System.out.println(node1);
+        String s = "abcdefg";
+        String s1 = MethodDO.reverseLeftWords(s,2);
+        System.out.println(s1);
     }
 }
