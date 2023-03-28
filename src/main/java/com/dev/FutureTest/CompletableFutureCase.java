@@ -10,14 +10,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-/**
- * @ClassName CompletableFutureCase
- * @Description TODO
- * @Author ty-ChaiHaoZe
- * @Date 2022/8/30
- * @Version TODO
- * @History TODO
- **/
+
 public class CompletableFutureCase {
     static List<NetMall> list = Arrays.asList(
             new NetMall("JD"),
