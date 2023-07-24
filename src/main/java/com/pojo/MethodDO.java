@@ -340,7 +340,7 @@ public class MethodDO {
      */
     public static String reverseLeftWords(String s, int n) {
         String res = "";
-        for(int i = n; i < n + s.length(); i++)
+        for (int i = n; i < n + s.length(); i++)
             res += s.charAt(i % s.length());
         return res;
 
@@ -349,6 +349,7 @@ public class MethodDO {
 
     /**
      * 统计一个数字在排序数组中出现的次数。
+     *
      * @param nums
      * @param target
      * @return
@@ -356,7 +357,7 @@ public class MethodDO {
     public static int search(int[] nums, int target) {
         int res = 0;
         for (int num : nums) {
-            if (target==num){
+            if (target == num) {
                 res++;
             }
         }
@@ -366,16 +367,17 @@ public class MethodDO {
     /**
      * 一个长度为n-1的递增排序数组中的所有数字都是唯一的，并且每个数字都在范围0～n-1之内。
      * 在范围0～n-1内的n个数字中有且只有一个数字不在该数组中，请找出这个数字。
+     *
      * @param nums
      * @return
      */
     public static int missingNumber(int[] nums) {
         int res = nums[0];
         for (int i = 0; i < nums.length; i++) {
-            if (res!=nums[i]){
+            if (res != nums[i]) {
                 break;
             }
-            res ++;
+            res++;
         }
 
         return res;
@@ -383,28 +385,31 @@ public class MethodDO {
 
     /**
      * 从上到下遍历二叉树
+     *
      * @param root
      * @return
      */
     public static int[] levelOrder(TreeNode root) {
 
-        if (root==null){
+        if (root == null) {
             return new int[0];
         }
-        Queue<TreeNode> queue = new LinkedList<TreeNode>(){{ add(root); }};
+        Queue<TreeNode> queue = new LinkedList<TreeNode>() {{
+            add(root);
+        }};
         ArrayList<Integer> ans = new ArrayList<>();
-        while (!queue.isEmpty()){
+        while (!queue.isEmpty()) {
             TreeNode node = queue.poll();
             ans.add(node.val);
-            if (node.left!=null){
+            if (node.left != null) {
                 queue.add(node.left);
             }
-            if (node.right!=null){
+            if (node.right != null) {
                 queue.add(node.right);
             }
         }
 
-        int []  res = new int[ans.size()];
+        int[] res = new int[ans.size()];
         for (int i = 0; i < ans.size(); i++) {
             res[i] = ans.get(i);
         }
@@ -413,12 +418,13 @@ public class MethodDO {
 
     /**
      * 剑指 Offer 32 - II. 从上到下打印二叉树 II,从上到下按层打印二叉树，同一层的节点按从左到右的顺序打印，每一层打印到一行。
+     *
      * @param root
      * @return
      */
     public List<List<Integer>> levelOrder2(TreeNode root) {
         List<List<Integer>> ret = new ArrayList<>();
-        if (root==null){
+        if (root == null) {
             return ret;
         }
         Queue<TreeNode> queue = new LinkedList<TreeNode>();
@@ -444,18 +450,19 @@ public class MethodDO {
 
     /**
      * 把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。
-     *
+     * <p>
      * 给你一个可能存在 重复 元素值的数组 numbers ，它原来是一个升序排列的数组，并按上述情形进行了一次旋转。请返回旋转数组的最小元素。例如，数组 [3,4,5,1,2] 为 [1,2,3,4,5] 的一次旋转，该数组的最小值为 1。
-     *
+     * <p>
      * 注意，数组 [a[0], a[1], a[2], ..., a[n-1]] 旋转一次 的结果为数组 [a[n-1], a[0], a[1], a[2], ..., a[n-2]] 。
+     *
      * @param numbers 有序的
      * @return
      */
     public int minArray(int[] numbers) {
         int res = numbers[0];
 
-        for (int i = 0; i < numbers.length-1; i++) {
-            if (numbers[i]<numbers[i+1]){
+        for (int i = 0; i < numbers.length - 1; i++) {
+            if (numbers[i] < numbers[i + 1]) {
                 res = numbers[i];
                 break;
             }
@@ -467,6 +474,7 @@ public class MethodDO {
 
     /**
      * 在字符串 s 中找出第一个只出现一次的字符。如果没有，返回一个单空格。 s 只包含小写字母。
+     *
      * @param s
      * @return
      */
@@ -484,10 +492,40 @@ public class MethodDO {
         return ' ';
     }
 
+    /**
+     * 给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串 的长度。
+     *
+     * @param s
+     * @return
+     */
+    public static int lengthOfLongestSubstring(String s) {
+        int result = 0;
+
+        String[] split = s.split("");
+
+        HashMap<Integer,String> stringHashMap = new HashMap<>();
+
+
+        for (int i = 0; i < split.length; i++) {
+            String temp = "";
+            if (temp.contains(split[i])) {
+
+                continue;
+            }
+            temp += split[i];
+            result = i + 1;
+
+        }
+
+        return result;
+
+    }
+
+
     @Test
     public void methodTest() {
         String s = "abcdefg";
-        String s1 = MethodDO.reverseLeftWords(s,2);
-        System.out.println(s1);
+        int i = MethodDO.lengthOfLongestSubstring(s);
+        System.out.println(i);
     }
 }
