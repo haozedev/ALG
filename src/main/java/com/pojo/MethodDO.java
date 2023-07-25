@@ -499,32 +499,39 @@ public class MethodDO {
      * @return
      */
     public static int lengthOfLongestSubstring(String s) {
+        if (s.length() <= 1) {
+            return s.length();
+        }
         int result = 0;
 
         String[] split = s.split("");
 
-        HashMap<Integer,String> stringHashMap = new HashMap<>();
-
-
         for (int i = 0; i < split.length; i++) {
-            String temp = "";
-            if (temp.contains(split[i])) {
-
-                continue;
+            StringBuilder temp = new StringBuilder();
+            int count = 0;
+            for (int j = i; j < split.length; j++) {
+                if (temp.toString().contains(split[j])) {
+                    result = Math.max(count, result);
+                    break;
+                }
+                temp.append(split[j]);
+                count++;
+                if ((i == split.length - 1 && j == split.length - 1)||temp.length()== split.length-i) {
+                    result = Math.max(count, result);
+                }
             }
-            temp += split[i];
-            result = i + 1;
-
+            if (count==split.length){
+                result = count;
+                break;
+            }
         }
-
         return result;
-
     }
 
 
     @Test
     public void methodTest() {
-        String s = "abcdefg";
+        String s = "aab";
         int i = MethodDO.lengthOfLongestSubstring(s);
         System.out.println(i);
     }
