@@ -21,7 +21,7 @@ public class FutureAPIDemo {
 
         System.out.println(Thread.currentThread().getName()+"\t------忙其他任务了");
 
-//        System.out.println(futureTask.get());
+//        System.out.println(futureTask.get());//必须等结果，容易导致堵塞，一般建议放最后，假如不想等很久，可以过时不候自动离开
 
         while (true){
             if (futureTask.isDone()){
