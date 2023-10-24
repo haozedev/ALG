@@ -1,10 +1,6 @@
 package com.juc;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.experimental.Accessors;
 
 import java.util.Arrays;
 import java.util.List;

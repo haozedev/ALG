@@ -30,5 +30,6 @@ public class CompletableFutureAPIDemo {
         }
 //        System.out.println(completableFuture.getNow("xxx"));
         System.out.println(completableFuture.complete("completeValue")+"\t"+completableFuture.join());
+
     }
 }
