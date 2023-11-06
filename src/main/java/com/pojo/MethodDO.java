@@ -535,18 +535,44 @@ public class MethodDO {
      * @return
      */
     public static int lengthOfLongestSubstring2(String s) {
-        if (s.length()==0) return 0;
+        if (s.length() == 0) return 0;
         HashMap<Character, Integer> map = new HashMap<>();
         int max = 0;
         int left = 0;
-        for(int i = 0; i < s.length(); i ++){
-            if(map.containsKey(s.charAt(i))){
-                left = Math.max(left,map.get(s.charAt(i)) + 1);
+        for (int i = 0; i < s.length(); i++) {
+            if (map.containsKey(s.charAt(i))) {
+                left = Math.max(left, map.get(s.charAt(i)) + 1);
             }
-            map.put(s.charAt(i),i);
-            max = Math.max(max,i-left+1);
+            map.put(s.charAt(i), i);
+            max = Math.max(max, i - left + 1);
         }
         return max;
+    }
+
+    /**
+     *      给你一个链表，删除链表的倒数第 n 个结点，并且返回链表的头结点。
+     * @param head
+     * @param n
+     * @return
+     */
+    public static ListNode removeNthFromEnd(ListNode head, int n) {
+
+        ListNode right = head;
+
+        ListNode left = head;
+
+        for (int i = 0; i < n; i++) {
+            right = right.next;
+        }
+        if (right == null) {
+            return head.next;
+        }
+        while (right.next != null) {
+            left = left.next;
+            right = right.next;
+        }
+        left.next = left.next.next;
+        return head;
     }
 
 
