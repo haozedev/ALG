@@ -633,11 +633,51 @@ public class MethodDO {
         return head;
     }
 
+    public static int[] findPeakGrid(int[][] mat) {
+        int[] result = new int[2];
+
+        int m = mat.length;//长
+        int n = 0;
+        for (int i = 0; i < m; i++) {
+            int[] temp = mat[i];
+            n = temp.length;//宽
+            int x = 0, y = 0, z = 0;
+            for (int j = 0; j < n; j++) {
+                //x是i的最大值
+                if (x < mat[i][j]) {
+                    x = mat[i][j];
+                    y = i;
+                    z = j;
+                }
+            }
+            //检查x是否为z列的峰值
+            //1.第一行
+            if (m > 1 && x > mat[y][z + 1]) {
+                int[] r = {y, z};
+                return r;
+            } else if (x > mat[y][z + 1]){
+                int[] r = {y, z};
+                return r;
+            }
+            //2.第 n 行
+            if (x > mat[y][z - 1]) {
+                int[] r = {y, z};
+                return r;
+            }
+            //3.其他的
+            if (x > mat[y][z - 1] && x > mat[y][z + 1]) {
+                int[] r = {y, z};
+                return r;
+            }
+        }
+
+        return result;
+    }
 
     @Test
     public void methodTest() {
-        String s = "pwwkew";
-        int i = MethodDO.lengthOfLongestSubstring2(s);
+        int[][] mat = {{1, 4}, {3, 2}};
+        int[] i = MethodDO.findPeakGrid(mat);
         System.out.println(i);
     }
 }
