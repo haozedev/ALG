@@ -651,21 +651,23 @@ public class MethodDO {
                 }
             }
             //检查x是否为z列的峰值
-            //1.第一行
-            if (m > 1 && x > mat[y][z + 1]) {
-                int[] r = {y, z};
-                return r;
-            } else if (x > mat[y][z + 1]){
+            //1.就一行 m==1
+            if (m == 1) {
                 int[] r = {y, z};
                 return r;
             }
-            //2.第 n 行
-            if (x > mat[y][z - 1]) {
+            if (y == 0 && x > mat[y + 1][z]) {
                 int[] r = {y, z};
                 return r;
             }
+            //2.到第 m 行
+            if (i == m - 1 && x > mat[y-1][z]) {
+                int[] r = {y, z};
+                return r;
+            }
+
             //3.其他的
-            if (x > mat[y][z - 1] && x > mat[y][z + 1]) {
+            if (y >= 1 && y < n && x > mat[y - 1][z] && x > mat[y + 1][z]) {
                 int[] r = {y, z};
                 return r;
             }
@@ -676,8 +678,11 @@ public class MethodDO {
 
     @Test
     public void methodTest() {
-        int[][] mat = {{1, 4}, {3, 2}};
+//        int[][] mat = {{10, 20}};
+        int[][] mat = {{10, 20, 15}, {21, 16, 14}, {7, 30, 32}};
         int[] i = MethodDO.findPeakGrid(mat);
-        System.out.println(i);
+        for (int i1 : i) {
+            System.out.println(i1);
+        }
     }
 }
