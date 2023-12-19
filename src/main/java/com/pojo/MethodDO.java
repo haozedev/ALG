@@ -550,7 +550,65 @@ public class MethodDO {
     }
 
     /**
-     *      给你一个链表，删除链表的倒数第 n 个结点，并且返回链表的头结点。
+     * <<<<<<< HEAD
+     * 给你一个整数数组 cost ，其中 cost[i] 是从楼梯第 i 个台阶向上爬需要支付的费用。一旦你支付此费用，即可选择向上爬一个或者两个台阶。
+     * 你可以选择从下标为 0 或下标为 1 的台阶开始爬楼梯。
+     * 请你计算并返回达到楼梯顶部的最低花费。
+     *
+     * @param cost
+     * @return
+     */
+    public static int minCostClimbingStairs(int[] cost) {
+
+        //定义结果数组
+        int n = cost.length;
+        int[] db = new int[n + 1];
+        db[0] = db[1] = 0;
+        for (int i = 2; i <= n; i++) {
+            db[i] = Math.min(db[i - 1] + cost[i - 1], db[i - 2] + cost[i - 2]);
+        }
+        return db[n];
+    }
+
+    /**
+     * 峰值元素是指其值严格大于左右相邻值的元素。
+     * <p>
+     * 给你一个整数数组 nums，找到峰值元素并返回其索引。数组可能包含多个峰值，在这种情况下，返回 任何一个峰值 所在位置即可。
+     * <p>
+     * 你可以假设 nums[-1] = nums[n] = -∞ 。
+     * <p>
+     * 你必须实现时间复杂度为 O(log n) 的算法来解决此问题。
+     *
+     * @param nums
+     * @return
+     */
+    public int findPeakElement(int[] nums) {
+        int result = 0;
+        //solution 1 : 求最大值
+//        for (int i = 0; i < nums.length; i++) {
+//           if (result<nums[i]){
+//               result = nums[i];
+//           }
+//        }
+        //solution 2 : 找峰值
+        int l = 0, r = nums.length - 1, m;
+        m = (r + l) / 2;
+        while (l < r) {
+            if (nums[m] > nums[m + 1]) {
+                r = m;
+            } else {
+                l = m + 1;
+            }
+        }
+        result = l;
+
+
+        return result;
+    }
+
+    /**
+     * 给你一个链表，删除链表的倒数第 n 个结点，并且返回链表的头结点。
+     *
      * @param head
      * @param n
      * @return
