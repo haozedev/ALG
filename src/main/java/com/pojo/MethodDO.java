@@ -690,24 +690,37 @@ public class MethodDO {
             return flag;
         }
         for (int i = 0; i < size; i++) {
-            String temp = words.get(i);
-
+            String[] split1 = words.get(i).split("");
+            String temp = split1[0];
             if (!temp.equals(split[i])){
                 flag = false;
             }
         }
 
         return flag;
+
+        // 官方解答
+//        if (words.size() != s.length()) {
+//            return false;
+//        }
+//        for (int i = 0; i < s.length(); i++) {
+//            if (words.get(i).charAt(0) != s.charAt(i)) {
+//                return false;
+//            }
+//        }
+//        return true;
+
     }
 
 
     @Test
     public void methodTest() {
-//        int[][] mat = {{10, 20}};
-        int[][] mat = {{10, 20, 15}, {21, 16, 14}, {7, 30, 32}};
-        int[] i = MethodDO.findPeakGrid(mat);
-        for (int i1 : i) {
-            System.out.println(i1);
-        }
+        String [] words = {"alice","bob","charlie"};
+        List<String> strings = Arrays.asList(words);
+        String s = "abc";
+
+        boolean acronym = isAcronym(strings, s);
+        System.out.println(acronym);
+
     }
 }
