@@ -676,6 +676,31 @@ public class MethodDO {
         return result;
     }
 
+    public boolean isAcronym(List<String> words, String s) {
+
+        Boolean flag = true;
+
+        String[] split = s.split("");
+
+        int length = split.length;
+        int size = words.size();
+
+        if (length!=size){
+            flag = false;
+            return flag;
+        }
+        for (int i = 0; i < size; i++) {
+            String temp = words.get(i);
+
+            if (!temp.equals(split[i])){
+                flag = false;
+            }
+        }
+
+        return flag;
+    }
+
+
     @Test
     public void methodTest() {
 //        int[][] mat = {{10, 20}};
