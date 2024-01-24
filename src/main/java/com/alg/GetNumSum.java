@@ -38,6 +38,7 @@ public class GetNumSum {
             if (map.containsKey(temp)) {
                 res[1] = i;
                 res[0] = map.get(temp);
+                break;
             }
             map.put(nums[i], i);
         }
