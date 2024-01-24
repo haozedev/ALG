@@ -661,7 +661,7 @@ public class MethodDO {
                 return r;
             }
             //2.到第 m 行
-            if (i == m - 1 && x > mat[y-1][z]) {
+            if (i == m - 1 && x > mat[y - 1][z]) {
                 int[] r = {y, z};
                 return r;
             }
@@ -685,14 +685,14 @@ public class MethodDO {
         int length = split.length;
         int size = words.size();
 
-        if (length!=size){
+        if (length != size) {
             flag = false;
             return flag;
         }
         for (int i = 0; i < size; i++) {
             String[] split1 = words.get(i).split("");
             String temp = split1[0];
-            if (!temp.equals(split[i])){
+            if (!temp.equals(split[i])) {
                 flag = false;
             }
         }
@@ -780,9 +780,31 @@ public class MethodDO {
         return sum;
     }
 
+    public long maximumSumOfHeights(List<Integer> maxHeights) {
+        int n = maxHeights.size();
+        long res = 0;
+        for (int i = 0; i < n; i++) {
+            long pre = maxHeights.get(i);
+            long sum = pre;
+            for (int j = i - 1; j >= 0; j--) {
+                pre = Math.min(pre, maxHeights.get(j));
+                sum += pre;
+            }
+
+            long suf = maxHeights.get(i);
+            for (int j = i + 1; j < n; j++) {
+                suf = Math.min(suf, maxHeights.get(j));
+                sum += suf;
+            }
+
+            res = Math.max(res, sum);
+        }
+        return res;
+    }
+
     @Test
     public void methodTest() {
-        String [] words = {"alice","bob","charlie"};
+        String[] words = {"alice", "bob", "charlie"};
         List<String> strings = Arrays.asList(words);
         String s = "abc";
 
