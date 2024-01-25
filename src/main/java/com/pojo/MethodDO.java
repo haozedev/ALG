@@ -690,14 +690,26 @@ public class MethodDO {
             return flag;
         }
         for (int i = 0; i < size; i++) {
-            String temp = words.get(i);
-
+            String[] split1 = words.get(i).split("");
+            String temp = split1[0];
             if (!temp.equals(split[i])){
                 flag = false;
             }
         }
 
         return flag;
+
+        // 官方解答
+//        if (words.size() != s.length()) {
+//            return false;
+//        }
+//        for (int i = 0; i < s.length(); i++) {
+//            if (words.get(i).charAt(0) != s.charAt(i)) {
+//                return false;
+//            }
+//        }
+//        return true;
+
     }
     public long maximumSumOfHeights(List<Integer> maxHeights) {
         int n = maxHeights.size();
@@ -721,13 +733,81 @@ public class MethodDO {
         return res;
     }
 
+    public int minimumMountainRemovals(int[] nums) {
+        int n = nums.length;
+        int[] suf = new int[n];
+        List<Integer> g = new ArrayList<>();
+        for (int i = n - 1; i > 0; i--) {
+            int x = nums[i];
+            int j = lowerBound(g, x);
+            if (j == g.size()) {
+                g.add(x);
+            } else {
+                g.set(j, x);
+            }
+            suf[i] = j + 1; // 从 nums[i] 开始的最长严格递减子序列的长度
+        }
+
+        int mx = 0;
+        g.clear();
+        for (int i = 0; i < n - 1; i++) {
+            int x = nums[i];
+            int j = lowerBound(g, x);
+            if (j == g.size()) {
+                g.add(x);
+            } else {
+                g.set(j, x);
+            }
+            int pre = j + 1; // 在 nums[i] 结束的最长严格递增子序列的长度
+            if (pre >= 2 && suf[i] >= 2) {
+                mx = Math.max(mx, pre + suf[i] - 1); // 减去重复的 nums[i]
+            }
+        }
+        return n - mx;
+    }
+
+    // 请看 https://www.bilibili.com/video/BV1AP41137w7/
+    private int lowerBound(List<Integer> g, int target) {
+        int left = -1, right = g.size(); // 开区间 (left, right)
+        while (left + 1 < right) { // 区间不为空
+            // 循环不变量：
+            // nums[left] < target
+            // nums[right] >= target
+            int mid = (left + right) >>> 1;
+            if (g.get(mid) < target) {
+                left = mid; // 范围缩小到 (mid, right)
+            } else {
+                right = mid; // 范围缩小到 (left, mid)
+            }
+        }
+        return right; // 或者 left+1
+    }
+
+    public int minStoneSum(int[] piles, int k) {
+        PriorityQueue<Integer> pq = new PriorityQueue<Integer>((a, b) -> (b - a));
+        for (int pile : piles) {
+            pq.offer(pile);
+        }
+        for (int i = 0; i < k; i++) {
+            int pile = pq.poll();
+            pile -= pile / 2;
+            pq.offer(pile);
+        }
+        int sum = 0;
+        while (!pq.isEmpty()) {
+            sum += pq.poll();
+        }
+        return sum;
+    }
+
     @Test
     public void methodTest() {
-//        int[][] mat = {{10, 20}};
-        int[][] mat = {{10, 20, 15}, {21, 16, 14}, {7, 30, 32}};
-        int[] i = MethodDO.findPeakGrid(mat);
-        for (int i1 : i) {
-            System.out.println(i1);
-        }
+        String [] words = {"alice","bob","charlie"};
+        List<String> strings = Arrays.asList(words);
+        String s = "abc";
+
+        boolean acronym = isAcronym(strings, s);
+        System.out.println(acronym);
+
     }
 }
