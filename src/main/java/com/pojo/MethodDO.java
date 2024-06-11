@@ -819,7 +819,19 @@ public class MethodDO {
         }
         return cnt;
     }
-
+    /**
+     *      2846. 边权重均等查询
+     * @param n
+     * @param edges
+     * @param queries
+     * @return
+     */
+    public int[] minOperationsQueries(int n, int[][] edges, int[][] queries) {
+        final ThreadLocal<ListNode> tl = new ThreadLocal<>();
+        ListNode node = new ListNode();
+        tl.set(node);
+        return null;
+    }
     @Test
     public void methodTest() {
         String[] words = {"alice", "bob", "charlie"};
