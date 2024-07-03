@@ -832,6 +832,37 @@ public class MethodDO {
         tl.set(node);
         return null;
     }
+
+    /**
+     * 2065. 最大化一张图中的路径价值
+     * @param values
+     * @param edges
+     * @param maxTime
+     * @return
+     */
+
+    public int maximalPathQuality(int[] values, int[][] edges, int maxTime) {
+        int maximalPathQuality = 0;
+
+        int length = edges.length;
+
+        for (int i = 0; i < edges.length; i++) {
+            int [] edge = edges[i];
+            //第一个edge记录的不是从0开始的路径，说明无法从0开始走到其他节点，直接退出
+            if (i==0&&edge[0]!=0){
+                break;
+            }
+            int pre = edge[0];
+            int next = edge[1];
+            int time = edge[2];
+
+
+        }
+
+
+        return maximalPathQuality;
+    }
+
     @Test
     public void methodTest() {
         String[] words = {"alice", "bob", "charlie"};
