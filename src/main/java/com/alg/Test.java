@@ -1,5 +1,9 @@
 package com.alg;
 
+import com.sun.org.apache.bcel.internal.generic.NEW;
+
+import java.util.HashMap;
+
 /**
  * @ClassName Test
  * @Author haoZe
@@ -12,7 +16,8 @@ public class Test {
         int search = search(arr, 7);
         System.out.println(search);
 
-
+        HashMap hashMap = new HashMap();
+        hashMap.put("a",1);
         Integer a = new Integer(2000);
         Integer b = new Integer(2000);
         System.out.println(a==b);
