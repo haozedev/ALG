@@ -1,9 +1,9 @@
 package com.api;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @ClassName ListDemo
@@ -14,18 +14,12 @@ import java.util.regex.Pattern;
  * @History TODO
  **/
 public class ListDemo {
-    public static void main(String[] args) {
-        List<String> arrayList = new ArrayList<>();
-
-        arrayList.add("001");
-
-        for (String s : arrayList) {
-            System.out.println(s);
-        }
-        Pattern pattern = Pattern.compile("[0]*"); // 验证数字
-        // Pattern pattern = Pattern.compile("-?[0-9]+?[0-9]+");(与上一行同效果)
-
-        Matcher matcher = pattern.matcher("000 0");
-        System.out.println(matcher.matches());
+    public static void main(String[] args) throws InterruptedException {
+        BlockingQueue<String> blockingQueue = new ArrayBlockingQueue<>(3);
+        System.out.println(blockingQueue.offer("a"));
+        System.out.println(blockingQueue.offer("b"));
+        System.out.println(blockingQueue.offer("c"));
+        System.out.println(blockingQueue.offer("a",3L, TimeUnit.SECONDS));
+        ForkJoinPool forkJoinPool = new ForkJoinPool();
     }
 }

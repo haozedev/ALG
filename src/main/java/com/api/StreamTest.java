@@ -10,6 +10,8 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @ClassName StreamTest
@@ -127,7 +129,9 @@ public class StreamTest {
 
     @Test
     public void server(){
-
+        List<Map<String,Integer>>[] list = new List[20];
+        int length = list.length;
+        System.out.println(length);
         //create socket
         int port = 8089;
         ServerSocket serverSocket = null;
