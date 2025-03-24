@@ -1,9 +1,6 @@
 package com.juc.future;
 
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
+import java.util.concurrent.*;
 
 /**
  * @author haoze
@@ -11,25 +8,23 @@ import java.util.concurrent.TimeoutException;
  */
 public class CompletableFutureAPIDemo {
     public static void main(String[] args) throws ExecutionException, InterruptedException, TimeoutException {
-        CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> {
-            try {
-                TimeUnit.SECONDS.sleep(2);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            return "abc";
+        ExecutorService executorService = Executors.newFixedThreadPool(2);
+        executorService.submit(() -> {
+            throw new RuntimeException("Task failed");
         });
-//        System.out.println(completableFuture.get());
-//        System.out.println(completableFuture.get(2L,TimeUnit.SECONDS));
-//        System.out.println(completableFuture.join());
-
+        executorService.shutdown();
         try {
-            TimeUnit.SECONDS.sleep(1);
+            if (!executorService.awaitTermination(60, TimeUnit.SECONDS)) {
+                executorService.shutdownNow();
+                if (!executorService.awaitTermination(60, TimeUnit.SECONDS)) {
+                    System.err.println("线程池未成功关闭");
+                }
+            }
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            executorService.shutdownNow();
+            Thread.currentThread().interrupt();
         }
-//        System.out.println(completableFuture.getNow("xxx"));
-        System.out.println(completableFuture.complete("completeValue")+"\t"+completableFuture.join());
+
 
     }
 }
