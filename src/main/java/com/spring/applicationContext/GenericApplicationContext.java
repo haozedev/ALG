@@ -33,6 +33,7 @@ public class GenericApplicationContext implements BeanDefinitionRegistry {
 
     private void finishBeanFactoryInitialization(DefaultListableBeanFactory beanFactory) {
         //
+        beanFactory.preInstantiateSingletons();
     }
 
     private void invokeBeanFactoryPostProcessors(DefaultListableBeanFactory beanFactory) {
@@ -42,5 +43,9 @@ public class GenericApplicationContext implements BeanDefinitionRegistry {
 
     private DefaultListableBeanFactory obtainBeanFactory() {
         return this.beanFactory;
+    }
+
+    public Object getBean(String beanName) {
+        return this.beanFactory.getBean(beanName);
     }
 }

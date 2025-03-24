@@ -9,7 +9,7 @@ import com.spring.annotation.Service;
  * @create 2025/3/24 16:13
  * @description
  */
-@Service
+@Service("userService1")
 @Scope("singleton")
 public class UserService1 {
 }

@@ -13,6 +13,10 @@ public class SpringTest {
     public static void main(String[] args) {
         AnnotationConfigApplicationContext applicationContext =
                 new AnnotationConfigApplicationContext(AppConfig.class);
-        //applicationContext.getBean();
+        System.out.println(applicationContext.getBean("userService"));
+        System.out.println(applicationContext.getBean("userService"));
+        System.out.println(applicationContext.getBean("userService1"));
+        System.out.println(applicationContext.getBean("userService1"));
+
     }
 }
