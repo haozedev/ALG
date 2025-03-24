@@ -1,9 +1,12 @@
 package com.pojo;
 
+import org.apache.commons.lang.ArrayUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * @author lingfeng
@@ -711,6 +714,7 @@ public class MethodDO {
 //        return true;
 
     }
+
     public long maximumSumOfHeights(List<Integer> maxHeights) {
         int n = maxHeights.size();
         long res = 0;
@@ -819,8 +823,10 @@ public class MethodDO {
         }
         return cnt;
     }
+
     /**
-     *      2846. 边权重均等查询
+     * 2846. 边权重均等查询
+     *
      * @param n
      * @param edges
      * @param queries
@@ -835,6 +841,7 @@ public class MethodDO {
 
     /**
      * 2065. 最大化一张图中的路径价值
+     *
      * @param values
      * @param edges
      * @param maxTime
@@ -847,9 +854,9 @@ public class MethodDO {
         int length = edges.length;
 
         for (int i = 0; i < edges.length; i++) {
-            int [] edge = edges[i];
+            int[] edge = edges[i];
             //第一个edge记录的不是从0开始的路径，说明无法从0开始走到其他节点，直接退出
-            if (i==0&&edge[0]!=0){
+            if (i == 0 && edge[0] != 0) {
                 break;
             }
             int pre = edge[0];
@@ -863,14 +870,46 @@ public class MethodDO {
         return maximalPathQuality;
     }
 
+    public List<List<Integer>> findMatrix(int[] nums) {
+
+        //把nums中的元素轮询，然后第一轮把第一次出现的每个元素都添加到第一个数组中，一次递归，直到结束
+        List<List<Integer>> result = new ArrayList<>();
+
+
+        List<Integer> listNum = IntStream.of(nums).boxed().collect(Collectors.toList());
+
+        extracted(result, listNum);
+
+
+        return result;
+    }
+
+    private static void extracted(List<List<Integer>> result, List<Integer> listNum) {
+        List<Integer> res = new ArrayList<>();
+        for (int i = 0; i < listNum.size(); i++) {
+
+            if (!res.contains(listNum.get(i))) {
+                res.add(listNum.get(i));
+                listNum.remove(i);
+                i--;
+            }
+        }
+        result.add(res);
+        if (listNum.size()==0){
+            return;
+        }
+        extracted(result,listNum);
+    }
+
     @Test
     public void methodTest() {
-        String[] words = {"alice", "bob", "charlie"};
-        List<String> strings = Arrays.asList(words);
-        String s = "abc";
+        int [] arr = {1,3,4,1,2,3,1};
 
-        boolean acronym = isAcronym(strings, s);
-        System.out.println(acronym);
+        List<List<Integer>> matrix = findMatrix(arr);
+        System.out.println(matrix);
+        for (List<Integer> integerList : matrix) {
+            System.out.println(integerList);
+        }
 
     }
 }
