@@ -35,8 +35,8 @@ public class Lock8Demo {
         Phone phone2 = new Phone();
 
         new Thread(() -> {
-            phone.sendSMS();
-//            phone2.sendSMS();
+//            phone.sendSMS();
+            phone2.sendSMS();
         },"b").start();
     }
 }
