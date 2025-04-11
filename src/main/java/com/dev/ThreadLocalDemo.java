@@ -16,7 +16,7 @@ public class ThreadLocalDemo {
     public static void main(String[] args) {
         House house = new House();
 
-        for (int i = 0; i <= 5; i++) {
+        for (int i = 1; i <= 5; i++) {
             new Thread(()->{
                 int size = new Random().nextInt(5)+1;
                 try {
@@ -24,7 +24,7 @@ public class ThreadLocalDemo {
                         house.saleHouse();
                         house.saleVolumeByThreadLocal();
                     }
-                    System.out.println(Thread.currentThread().getName()+house.saleVolume.get());
+                    System.out.println(Thread.currentThread().getName()+"号销售卖出:"+house.saleVolume.get());
                 } finally {
                     house.saleVolume.remove();
                 }

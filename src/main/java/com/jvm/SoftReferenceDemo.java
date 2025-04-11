@@ -31,11 +31,11 @@ public class SoftReferenceDemo {
         System.out.println(o1);
         System.out.println(softReference.get());
 
-        o1 = null;
+//        o1 = null;
 //        System.gc();
 
         try {
-//            byte[] bytes = new byte[100 * 1024 * 1024];
+            byte[] bytes = new byte[100 * 1024 * 1024*1024];
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
