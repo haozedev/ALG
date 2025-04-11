@@ -1,15 +1,16 @@
 package com.dev;
 
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class SynchronizedTest {
 
-    public static volatile int race = 0;
+    public static    int race = 0;
 
     private volatile static CountDownLatch countDownLatch = new CountDownLatch(2);
 
     public static void main(String[] args) throws InterruptedException {
-
+    new AtomicInteger().getAndIncrement();
         // 循环开启2个线程来计数
         for (int i = 0; i < 2; i++) {
             new Thread(() -> {
