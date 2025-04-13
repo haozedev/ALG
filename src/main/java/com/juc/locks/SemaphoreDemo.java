@@ -1,4 +1,4 @@
-package com.dev;
+package com.juc.locks;
 
 import java.util.Random;
 import java.util.concurrent.Semaphore;

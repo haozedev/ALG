@@ -11,7 +11,6 @@ import java.util.concurrent.locks.ReentrantLock;
 public class MainThreadWaitExample {
     public static void main(String[] args) {
         int count = 3;
-        new ReentrantLock();
         CountDownLatch latch = new CountDownLatch(count);
         for (int i = 0; i < count; i++) {
             new Thread(() -> {
