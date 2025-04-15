@@ -9,25 +9,21 @@ import java.util.concurrent.locks.ReentrantLock;
  * @description
  */
 public class MainThreadWaitExample {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         int count = 3;
         CountDownLatch latch = new CountDownLatch(count);
         for (int i = 0; i < count; i++) {
             new Thread(() -> {
-                System.out.println(Thread.currentThread().getName() + "execute task");
+                System.out.println(Thread.currentThread().getName() + ":execute task");
                 try {
                     Thread.sleep(1000);
                     latch.countDown();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-            }, "Worker-"+i).start();
+            }, "Worker-" + i).start();
         }
-        try {
-            latch.wait();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        latch.await();
         System.out.println("all task finished");
     }
 }

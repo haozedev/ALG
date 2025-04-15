@@ -18,7 +18,7 @@ public class CyclicBarrierExample {
         for (int i = 0; i < threadCount; i++) {
             new Thread(()->{
                 try {
-                    System.out.println(Thread.currentThread().getName()+"arrive barrier");
+                    System.out.println(Thread.currentThread().getName()+":arrive barrier");
                     cyclicBarrier.await();
                 } catch (Exception e) {
                     e.printStackTrace();

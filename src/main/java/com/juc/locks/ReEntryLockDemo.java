@@ -15,16 +15,16 @@ public class ReEntryLockDemo {
     }
 
     public synchronized void m1(){
-        System.out.println(Thread.currentThread().getName()+"\t----come in");
+        System.out.println(Thread.currentThread().getName()+"\t---- m1 come in");
         m2();
-        System.out.println(Thread.currentThread().getName()+"\t----end");
+        System.out.println(Thread.currentThread().getName()+"\t---- m1 end");
     }
     public synchronized void m2(){
-        System.out.println(Thread.currentThread().getName()+"\t----come in");
+        System.out.println(Thread.currentThread().getName()+"\t---- m2 come in");
         m3();
     }
     public synchronized void m3(){
-        System.out.println(Thread.currentThread().getName()+"\t----come in");
+        System.out.println(Thread.currentThread().getName()+"\t---- m3 come in");
     }
 
     private static void reEntryM1(Object object) {

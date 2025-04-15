@@ -30,9 +30,9 @@ public class InterruptedDemo {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-//        new Thread(()->{
-//            t1.interrupt();
-//        },"t2").start();
+        new Thread(()->{
+            t1.interrupt();
+        },"t2").start();
 
         t1.interrupt();
     }
