@@ -923,13 +923,128 @@ public class MethodDO {
         return true;
     }
 
+    public static int searchBy2(int[] nums, int target) {
+
+        int left = 0, right = nums.length - 1;
+        while (left <= right) {
+            //找到中间值的索引
+            int mid = left + (right - left) / 2;
+            if (target == nums[mid]) {
+                return mid;
+            } else if (target < nums[mid]) {
+                right = mid - 1;
+            } else {
+                left = mid + 1;
+            }
+        }
+
+        return -1;
+    }
+
+    public int[] searchRange(int[] nums, int target) {
+        int[] res = new int[2];
+
+        //查找左边界
+
+        //查找右边界
+
+        //边界数组判断
+
+        return res;
+    }
+
+    public static int getLeftBorder(int[] nums, int target) {
+        int left = 0;
+        int right = nums.length - 1;
+        int leftBorder = -2; // 记录一下leftBorder没有被赋值的情况
+        while (left <= right) {
+            int middle = left + ((right - left) / 2);
+            if (nums[middle] >= target) { // 寻找左边界，nums[middle] == target的时候更新right
+                right = middle - 1;
+                leftBorder = right;
+            } else {
+                left = middle + 1;
+            }
+        }
+        return leftBorder;
+    }
+
+    public static int getRightBorder(int[] nums, int target) {
+
+        int left = 0;
+        int right = nums.length - 1;
+        int rightBorder = -2; // 记录一下rightBorder没有被赋值的情况
+        while (left <= right) {
+            int middle = left + ((right - left) / 2);
+            if (nums[middle] > target) {
+                right = middle - 1;
+            } else { // 寻找右边界，nums[middle] == target的时候更新left
+                left = middle + 1;
+                rightBorder = left;
+            }
+        }
+        return rightBorder;
+    }
+
+    public static int[] searchRange2(int[] nums, int target) {
+        int leftBorder = getLeftBorder(nums, target);
+        int rightBorder = getRightBorder(nums, target);
+        // 情况一
+        if (leftBorder == -2 || rightBorder == -2) return new int[]{-1, -1};
+        // 情况三
+        if (rightBorder - leftBorder > 1)
+            return new int[]{leftBorder + 1, rightBorder - 1};
+        // 情况二
+        return new int[]{-1, -1};
+    }
+
+    public static int[] searchRange3(int[] nums, int target) {
+        int leftBorder = getLeftBorder3(nums, target);
+        int rightBorder = getRightBorder3(nums, target);
+        // 情况一
+        if (leftBorder == -2 || rightBorder == -2) return new int[]{-1, -1};
+        // 情况三
+        if (rightBorder - leftBorder > 1)
+            return new int[]{leftBorder + 1, rightBorder - 1};
+        // 情况二
+        return new int[]{-1, -1};
+    }
+
+    private static int getRightBorder3(int[] nums, int target) {
+        int rightBorder = 0, left = 0, right = nums.length - 1;
+        while (left<right){
+            int mid = left + (right - left) / 2;
+            if (nums[mid] < target) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+                rightBorder=right;
+            }
+        }
+        return rightBorder;
+    }
+
+    private static int getLeftBorder3(int[] nums, int target) {
+        int leftBorder = 0, left = 0, right = nums.length - 1;
+        //[1,1]
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            if (nums[mid] < target) {
+                left = mid + 1;
+                leftBorder=left;
+            } else {
+                right = mid - 1;
+            }
+        }
+        return leftBorder;
+    }
+
+
     @Test
     public void methodTest() {
-//        int [] arr = {6};
-//        int [][] qu ={{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},};
-        int[] arr = {3};
-        int[][] qu = {{0, 0}, {0, 0}};
-        boolean zeroArray = isZeroArray(arr, qu);
-        System.out.println("result:" + zeroArray);
+        int[] arr = {5, 7, 7, 8, 8,8,10};
+        int qu = 8;
+        int[] zeroArray = searchRange2(arr, qu);
+        System.out.println("result:" + zeroArray[0] + "," + zeroArray[1]);
     }
 }
