@@ -1012,13 +1012,13 @@ public class MethodDO {
 
     private static int getRightBorder3(int[] nums, int target) {
         int rightBorder = 0, left = 0, right = nums.length - 1;
-        while (left<right){
+        while (left < right) {
             int mid = left + (right - left) / 2;
             if (nums[mid] < target) {
                 left = mid + 1;
             } else {
                 right = mid - 1;
-                rightBorder=right;
+                rightBorder = right;
             }
         }
         return rightBorder;
@@ -1031,7 +1031,7 @@ public class MethodDO {
             int mid = left + (right - left) / 2;
             if (nums[mid] < target) {
                 left = mid + 1;
-                leftBorder=left;
+                leftBorder = left;
             } else {
                 right = mid - 1;
             }
@@ -1039,12 +1039,109 @@ public class MethodDO {
         return leftBorder;
     }
 
+    /**
+     * 26. 删除有序数组中的重复项
+     *
+     * @param nums
+     * @return
+     */
+    public int removeDuplicates(int[] nums) {
+        int length = nums.length;
+        if (length < 2) return length;
+        int slow = 1;
+        int fast = 1;
+        while (fast < length) {
+            if (nums[fast - 1] != nums[fast]) {
+                nums[slow] = nums[fast];
+                ++slow;
+            }
+            ++fast;
+        }
+        return slow;
+    }
 
+    /**
+     * 26. 删除有序数组中的重复项
+     *
+     * @param nums
+     * @return
+     */
+    public int removeDuplicates2(int[] nums) {
+        int length = nums.length;
+        if (length < 2) return length;
+        int slow = 0;
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[slow] != nums[i]) {
+                nums[slow] = nums[i];
+                ++slow;
+            }
+        }
+        return slow + 1;
+    }
+
+    /**
+     * 283. 移动零
+     *
+     * @param nums
+     */
+    public void moveZeroes(int[] nums) {
+        int length = nums.length;
+        int slow = 0;
+        int fast = 0;
+        while (fast < length) {
+            if (nums[fast] != 0) {
+                int temp = nums[slow];
+                nums[slow] = nums[fast];
+                nums[fast] = temp;
+                ++slow;
+            }
+            ++fast;
+        }
+    }
+
+    /**
+     * 283. 移动零
+     *
+     * @param nums
+     */
+    public void moveZeroes2(int[] nums) {
+        int length = nums.length;
+        int slow = 0;
+        for (int i = 0; i < length; i++) {
+            if (nums[i] != 0) {
+                nums[slow] = nums[i];
+                slow++;
+            }
+        }
+        for (int i = slow; i < length; i++) {
+            nums[i] = 0;
+        }
+    }
+
+    /**
+     * 977. 有序数组的平方
+     * @param nums
+     * @return
+     */
+    public int[] sortedSquares(int[] nums) {
+        int l = nums.length;
+        int slow = 0;
+        int fast = 0;
+        //先取平方
+        for (int i = 0; i < l; i++) {
+            nums[i]=nums[i]*nums[i];
+        }
+        //再排序
+
+
+        return nums;
+    }
     @Test
     public void methodTest() {
-        int[] arr = {5, 7, 7, 8, 8,8,10};
-        int qu = 8;
-        int[] zeroArray = searchRange2(arr, qu);
-        System.out.println("result:" + zeroArray[0] + "," + zeroArray[1]);
+        int[] arr = {-4,-1,0,3,10};
+        int[] ints = sortedSquares(arr);
+        for (int i : ints) {
+            System.out.println("result:" + i);
+        }
     }
 }
