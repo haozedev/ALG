@@ -1120,28 +1120,65 @@ public class MethodDO {
 
     /**
      * 977. 有序数组的平方
+     *
      * @param nums
      * @return
      */
     public int[] sortedSquares(int[] nums) {
         int l = nums.length;
-        int slow = 0;
-        int fast = 0;
-        //先取平方
-        for (int i = 0; i < l; i++) {
-            nums[i]=nums[i]*nums[i];
+        int[] res = new int[l];
+        if (l <= 1) {
+            res[l - 1] = nums[0] * nums[0];
+            return res;
         }
-        //再排序
+        int left = 0;
+        int right = l - 1;
+        //两边数的平方大，中间数的平方小
+        for (int i = l - 1; i >= 0; i--) {
+            if (nums[left] * nums[left] < nums[right] * nums[right]) {
+                res[i] = nums[right] * nums[right];
+                --right;
+            } else {
+                res[i] = nums[left] * nums[left];
+                ++left;
+            }
+        }
 
-
-        return nums;
+        return res;
     }
+
+    /**
+     * 209. 长度最小的子数组
+     *
+     * @param target
+     * @param nums
+     * @return
+     */
+    public int minSubArrayLen(int target, int[] nums) {
+        int res = Integer.MAX_VALUE;
+        int l = nums.length;
+        int left = 0;
+        int subLength = 0;
+        int sum = 0;
+        for (int i = 0; i < l; i++) {
+            sum += nums[i];
+            while (sum >= target) {
+                subLength = (i - left + 1);
+                res = res < subLength ? res : subLength;
+                sum-=nums[left];
+                left++;
+            }
+        }
+
+        return res;
+    }
+
     @Test
     public void methodTest() {
-        int[] arr = {-4,-1,0,3,10};
-        int[] ints = sortedSquares(arr);
-        for (int i : ints) {
-            System.out.println("result:" + i);
-        }
+        int[] arr = {2, 3, 1, 2, 4, 3};
+        int ints = minSubArrayLen(7,arr);
+//        for (int i : ints) {
+//            System.out.println("result:" + i);
+//        }
     }
 }
