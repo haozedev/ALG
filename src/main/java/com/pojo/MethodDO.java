@@ -1165,7 +1165,7 @@ public class MethodDO {
             while (sum >= target) {
                 subLength = (i - left + 1);
                 res = res < subLength ? res : subLength;
-                sum-=nums[left];
+                sum -= nums[left];
                 left++;
             }
         }
@@ -1173,10 +1173,79 @@ public class MethodDO {
         return res;
     }
 
+    /**
+     * 59. 螺旋矩阵 II
+     *
+     * @param n
+     * @return
+     */
+    public int[][] generateMatrix(int n) {
+        int[][] nums = new int[n][n];
+        int startX = 0;//行起始位置
+        int startY = 0;//列起始位置
+        int count = 1;//每个位置的数
+        int loop = 1;//转到几圈
+        int offset = 1;//每一圈减的数
+        int i, j;//循环开始
+        while (loop <= n / 2) {
+            for (j = startY; j < n - offset; j++) {
+                nums[startX][j] = count++;
+            }
+            for (i = startX; i < n - offset; i++) {
+                nums[i][j] = count++;
+            }
+            for (; j > startY; j--) {
+                nums[i][j] = count++;
+            }
+            for (; i > startX; i--) {
+                nums[i][j] = count++;
+            }
+            startX++;
+            startY++;
+            offset++;
+            loop++;
+        }
+        if (n % 2 == 1) nums[startX][startY] = count;
+        return nums;
+    }
+
+    /**
+     * 54. 螺旋矩阵
+     *
+     * @param matrix
+     * @return
+     */
+    public List<Integer> spiralOrder2(int[][] matrix) {
+        List<Integer> list = new ArrayList<>();
+        int m = matrix.length;
+        int n = matrix[0].length;
+        int up = 0;
+        int down = m - 1;
+        int left = 0;
+        int right = n - 1;
+        while (true) {
+            //每圈第一行
+            for (int i = left; i <= right; i++) list.add(matrix[up][i]);
+            if (++up > down) break;
+            //每圈右列
+            for (int i = up; i <= down; i++) list.add(matrix[i][right]);
+            if (--right < left) break;
+            //末行
+            for (int i=right;i>=left;i--)list.add(matrix[down][i]);
+            if (--down<up)break;
+            //左列
+            for (int i= down;i>=up;i--)list.add(matrix[i][left]);
+            if (++left>right)break;
+
+        }
+
+        return list;
+    }
+
     @Test
     public void methodTest() {
         int[] arr = {2, 3, 1, 2, 4, 3};
-        int ints = minSubArrayLen(7,arr);
+        int[][] ints = generateMatrix(3);
 //        for (int i : ints) {
 //            System.out.println("result:" + i);
 //        }
